@@ -18,6 +18,7 @@ def main():
     augPath = os.path.join(augBase, 'augmented')
     for path, dirs, files in os.walk(args.directory):
         for d in dirs:
+            print('\n{0}'.format(d))
             images = []
             curPath = os.path.join(path, d)
             curAugPath = os.path.join(augPath, d)
@@ -45,7 +46,6 @@ def main():
 
 
 def count_files(path):
-    print(path)
     return len([name for name in os.listdir(path) if os.path.isfile(os.path.join(path, name))])
 
 
