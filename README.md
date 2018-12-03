@@ -20,4 +20,4 @@ Run in command prompt
 
 `python augment.py`
 
-Augmented files will be added to a new folder in the root image folder under the name `augmented`. This folder will contain matching subdirs based on extracted subdirs from root image folder. Running multiple times will generate different images, but will overrite current augmented files. So be sure to save the augmented images somewhere else before rerunning.
+Augmented files will be added to a new folder in the root image folder under the name `augmented`. This folder will contain matching subdirs based on extracted subdirs from root image folder. Running multiple times will generate different images, but will override current augmented files. So be sure to save the augmented images somewhere else before rerunning.
