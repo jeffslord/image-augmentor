@@ -5,6 +5,7 @@ from imgaug import augmenters as iaa
 import numpy as np
 import argparse
 from random import shuffle
+import sys
 
 parser = argparse.ArgumentParser(description='Augmentor')
 parser.add_argument('--directory', '-d', type=str,
@@ -21,17 +22,31 @@ def main():
             curPath = os.path.join(path, d)
             curAugPath = os.path.join(augPath, d)
             os.makedirs(curAugPath, exist_ok=True)
+            numFiles = count_files(curPath)
+            count = 1
             for i in os.listdir(curPath):
+                sys.stdout.write(
+                    "\r[INFO] Reading image {0} of {1} ".format(count, numFiles))
+                sys.stdout.flush()
+                count += 1
                 im = cv2.imread(os.path.join(curPath, i))
                 images.append(im)
             shuffle(images)
+            print("\n[INFO] Augmenting images...")
             augmented = augment(images)
             i = 1
             for j in augmented:
+                sys.stdout.write(
+                    "\r[INFO] Saving image {0} of {1}".format(i, numFiles))
+                sys.stdout.flush()
                 savePath = os.path.join(curAugPath, str(i) + '.jpg')
-                print(savePath)
                 cv2.imwrite(savePath, j)
                 i += 1
+
+
+def count_files(path):
+    print(path)
+    return len([name for name in os.listdir(path) if os.path.isfile(os.path.join(path, name))])
 
 
 def augment(images):
