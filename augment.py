@@ -37,7 +37,7 @@ def main():
             i = 1
             for j in augmented:
                 sys.stdout.write(
-                    "\r[INFO] Saving image {0} of {1}".format(i, numFiles))
+                    "\r[INFO] Saving image {0} of {1} ".format(i, numFiles))
                 sys.stdout.flush()
                 savePath = os.path.join(curAugPath, str(i) + '.jpg')
                 cv2.imwrite(savePath, j)
