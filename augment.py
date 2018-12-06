@@ -33,6 +33,12 @@ def main():
                 im = cv2.imread(os.path.join(curPath, i))
                 images.append(im)
             shuffle(images)
+            good_images = []
+            for i in images:
+                if i is not None:
+                    good_images.append(i)
+            images = good_images
+            # return
             print("\n[INFO] Augmenting images...")
             augmented = augment(images)
             i = 1
